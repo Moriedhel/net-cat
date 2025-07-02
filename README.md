@@ -1,46 +1,48 @@
-# Push-Swap
+Net-Cat 
 
-## 🧩 Project Description
+Net-Cat is a lightweight TCP-based group chat application written in Go. It allows multiple clients to connect, communicate in real-time, and see the conversation history.
+Features
 
-**Push-Swap** is a sorting project that uses a *non-comparative sorting algorithm* and a custom instruction set. The goal is to sort a list of integers with the minimum number of operations using only two stacks and a restricted set of commands.
+    Multiple Clients: Supports up to 10 simultaneous connections.
+    Usernames: Clients must choose a unique username.
+    Message Broadcasting: All messages are broadcast to every connected client with a timestamp.
+    Notifications: Clients are notified when users join or leave the chat.
+    Chat History: New clients receive the chat history upon connection.
+    Default Port: Listens on port 8989 by default.
 
-This project consists of two programs:
+Installation
 
-- `push-swap`: Generates and outputs the minimal list of operations to sort the stack.
-- `checker`: Validates a list of instructions to verify whether the stack is correctly sorted.
+    Clone the Repository:
+    git clone https://platform.zone01.gr/git/mfoteino/net-cat
 
-## 📜 Stack Rules & Instructions
 
-The sorting algorithm works with two stacks: `a` (initially filled with values) and `b` (initially empty).
+Build the Project (Optional):
 
-### Available Instructions:
+    go build -o TCPchat .
 
-| Command | Description |
-|---------|-------------|
-| `sa`    | Swap the first 2 elements of stack a |
-| `sb`    | Swap the first 2 elements of stack b |
-| `ss`    | Execute `sa` and `sb` |
-| `pa`    | Push the first element from stack b to stack a |
-| `pb`    | Push the first element from stack a to stack b |
-| `ra`    | Rotate stack a (first element becomes last) |
-| `rb`    | Rotate stack b |
-| `rr`    | Execute `ra` and `rb` |
-| `rra`   | Reverse rotate stack a (last element becomes first) |
-| `rrb`   | Reverse rotate stack b |
-| `rrr`   | Execute `rra` and `rrb` |
+Usage
+Running the Server
 
-## 🚀 Usage
+    Default Port (8989):
+    go run .
+    Custom Port (e.g., 2525):
+    go run . 2525
 
-### ✅ push-swap
+Invalid Usage: If you provide more than one argument, the program will display:
 
-Generates and outputs the shortest sequence of instructions to sort the input.
+    [USAGE]: ./TCPChat $port
 
-```bash
-$ ./push-swap "2 1 3 6 5 8"
-pb
-pb
-ra
-sa
-rrr
-pa
-pa
+Connecting as a Client
+
+    You can use any TCP client (such as nc):
+    nc localhost 8989
+
+When connected, you'll see a welcome message and be prompted for your username.
+    
+                                     File Structure
+
+    main.go: Entry point; handles command-line arguments and starts the server.
+    server.go: Manages client connections, message broadcasting, and chat history.
+    client.go: Handles user interactions and message processing.
+    formatter.go: Provides formatted output with ANSI color codes.
+

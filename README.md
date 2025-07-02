@@ -13,7 +13,7 @@ Features
 Installation
 
     Clone the Repository:
-    git clone https://platform.zone01.gr/git/mfoteino/net-cat
+https://github.com/Moriedhel/net-cat.git
 
 
 Build the Project (Optional):
